@@ -12,6 +12,10 @@
         <p>Description: {{ to_do_action.description }}</p>
         <p>Status: {{ to_do_action.status }}</p>
         <p>Deadline: {{ to_do_action.deadline }}</p>
+        <form action="" method="post">
+            {% csrf_token %}
+        <button type="submit" class="btn btn-secondary" name="id" value="{{ to_do_action.pk }}">Удалить</button>
+        </form>
         <br><br>
     {% endfor %}
     <a href="/add">Create a new task</a>
