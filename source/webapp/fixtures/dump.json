@@ -1,0 +1,47 @@
+[
+{
+  "model": "webapp.to_do_list",
+  "pk": 4,
+  "fields": {
+    "description": "some_test_task",
+    "status": "done",
+    "deadline": "1111-01-01"
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 5,
+  "fields": {
+    "description": "wolk with do",
+    "status": "in_progress",
+    "deadline": "2020-07-22"
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 6,
+  "fields": {
+    "description": "none test",
+    "status": "done",
+    "deadline": null
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$hZqfgs8Ng1BY$JQ+Oa8nhC6BN+Y6iww2cxXyUca9uct4d/HAMWZQqzrQ=",
+    "last_login": "2020-07-21T10:51:58.055Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-07-21T10:51:33.704Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
