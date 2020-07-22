@@ -9,15 +9,17 @@ def index_view(request):
             'to_do_list': to_do_list
         }
         return render(request, 'index.html', context)
-    elif request.method == 'POST':
-        to_do_action_id = request.POST.get('id')
-        to_do_action = TO_DO_List.objects.get(pk = to_do_action_id)
-        to_do_action.delete()
-        to_do_list = TO_DO_List.objects.all()
-        context = {
-            'to_do_list': to_do_list
-        }
-        return render(request, 'index.html', context)
+
+
+def delete_todo_action(request):
+    to_do_action_id = request.POST.get('id')
+    to_do_action = TO_DO_List.objects.get(pk=to_do_action_id)
+    to_do_action.delete()
+    to_do_list = TO_DO_List.objects.all()
+    context = {
+        'to_do_list': to_do_list
+    }
+    return render(request, 'index.html', context)
 
 
 def create_todo_action(request):
