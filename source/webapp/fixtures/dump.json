@@ -1,20 +1,12 @@
 [
 {
   "model": "webapp.to_do_list",
-  "pk": 4,
-  "fields": {
-    "description": "some_test_task",
-    "status": "done",
-    "deadline": "1111-01-01"
-  }
-},
-{
-  "model": "webapp.to_do_list",
   "pk": 5,
   "fields": {
     "description": "wolk with do",
     "status": "in_progress",
-    "deadline": "2020-07-22"
+    "deadline": "2020-07-22",
+    "long_description": "kekw"
   }
 },
 {
@@ -23,7 +15,8 @@
   "fields": {
     "description": "none test",
     "status": "done",
-    "deadline": null
+    "deadline": null,
+    "long_description": "it works"
   }
 },
 {
