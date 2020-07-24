@@ -33,7 +33,9 @@ def create_todo_action(request):
         description = request.POST.get('description')
         status = request.POST.get('status')
         date = request.POST.get('date') or None
-        to_do_action = TO_DO_List.objects.create(description=description, status=status, deadline=date)
+        long_description = request.POST.get('long_description')
+        to_do_action = TO_DO_List.objects.create(description=description, status=status, deadline=date,
+                                                 long_description=long_description)
         context = {
             'to_do_action': to_do_action
         }
