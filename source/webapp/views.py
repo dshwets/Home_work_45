@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from webapp.models import TO_DO_List
 
 
@@ -36,7 +36,12 @@ def create_todo_action(request):
         long_description = request.POST.get('long_description')
         to_do_action = TO_DO_List.objects.create(description=description, status=status, deadline=date,
                                                  long_description=long_description)
-        context = {
-            'to_do_action': to_do_action
-        }
-        return render(request, 'view_to_do_action.html', context)
+        return redirect('watch_todo', to_do_action.pk)
+
+
+def watch_todo(request, pk):
+    to_do_action = TO_DO_List.objects.get(pk=pk)
+    context = {
+        'to_do_action': to_do_action
+    }
+    return render(request, 'view_to_do_action.html', context)

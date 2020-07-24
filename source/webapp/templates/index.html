@@ -9,7 +9,7 @@
 <div class="container">
     <h1>ToDo List</h1>
     {% for to_do_action in to_do_list %}
-        <p>Description: {{ to_do_action.description }}</p>
+        <p>Description: <a href="{% url 'watch_todo' to_do_action.pk %}">{{ to_do_action.description }}</a></p>
         <p>Status: {{ to_do_action.status }}</p>
         <p>Deadline: {{ to_do_action.deadline }}</p>
         <form action="/todo/delete" method="post">
