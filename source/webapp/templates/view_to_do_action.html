@@ -12,9 +12,9 @@
     <p class="mt-5">Description: {{ to_do_action.description }}</p>
     <p>Status: {{ to_do_action.status }}</p>
     <p>Deadline: {{ to_do_action.deadline }}</p>
-    <p>Long_description: {{ to_do_action.long_description }}</p>
+    <div class="d-flex"><p class="d-inline">Long_description: </p> <pre class="border d-inline-block mb-0 ml-2">{{ to_do_action.long_description }}</pre>
+    </div>
     <br><br>
-</div>
 {% endblock %}
 </body>
 </html>
