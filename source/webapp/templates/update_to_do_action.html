@@ -2,19 +2,9 @@
 {% block title %}Update TODO{% endblock %}
 {% block content %}
 
-    {% include 'partial/form.html' with form_method="POST" btn_name='Обновить' action='Update' %}
+    {% url 'update_todo' todo_action.pk as action_url%}
+    {% include 'partial/form.html' with form_method="POST" btn_name='Обновить' action='Update' action_url=action_url%}
 
-{#<form action="" method="POST">#}
-{#{% csrf_token %}#}
-{#    <div class="container">#}
-{#    <h1>Update ToDo action</h1>#}
-{#        {% for field in form %}#}
-{#            {% include 'partial/form_field.html' %}#}
-{#        {% endfor %}#}
-{#        <br>#}
-{#    <button type="submit" class="btn btn-secondary">Обновить</button>#}
-{#    </div>#}
-{#</form>#}
 {% endblock %}
 </body>
 </html>

@@ -60,7 +60,6 @@ def update_todo(request, pk):
             'long_description': todo_action.long_description,
             'deadline': todo_action.deadline
             })
-        print(todo_action.status)
         return render(request, 'update_to_do_action.html', context={'form': form,
                                                                     'todo_action': todo_action})
     elif request.method == 'POST':
