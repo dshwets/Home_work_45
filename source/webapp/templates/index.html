@@ -15,10 +15,12 @@ TODO List
         <p>Description: <a href="{% url 'watch_todo' to_do_action.pk %}">{{ to_do_action.description }}</a></p>
         <p>Status: {{ to_do_action.status }}</p>
         <p>Deadline: {{ to_do_action.deadline }}</p>
-            <form action="/todo/delete" method="post">
+           <div class=""> <form class="d-inline" action="/todo/delete" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-secondary" name="id" value="{{ to_do_action.pk }}">Удалить</button>
             </form>
+            <a href="{% url 'update_todo' to_do_action.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>
+            </div>
         <br><br>
         {% endfor %}
     </div>

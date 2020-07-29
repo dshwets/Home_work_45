@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Create TODO{% endblock %}
+{% block title %}Update TODO{% endblock %}
 {% block content %}
 
 <form action="" method="POST">
 {% csrf_token %}
     <div class="container">
-    <h1>Add ToDo action</h1>
+    <h1>Update ToDo action</h1>
     {% include 'partial/form_field.html'  with field=form.status%}
     {% include 'partial/form_field.html'  with field=form.description%}
     {% include 'partial/form_field.html'  with field=form.long_description%}
     {% include 'partial/form_field.html'  with field=form.deadline%}
         <br>
-    <button type="submit" class="btn btn-secondary">Отправить</button>
+    <button type="submit" class="btn btn-secondary">Обновить</button>
     </div>
 </form>
 {% endblock %}
