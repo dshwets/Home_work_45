@@ -54,7 +54,7 @@ def watch_todo(request, pk):
 def update_todo(request, pk):
     todo_action = get_object_or_404(TO_DO_List, pk=pk)
     if request.method == 'GET':
-        form = ToDoForm(data={
+        form = ToDoForm(initial={
             'status': todo_action.status,
             'description': todo_action.description,
             'long_description': todo_action.long_description,

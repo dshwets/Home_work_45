@@ -2,18 +2,21 @@
 {% block title %}Create TODO{% endblock %}
 {% block content %}
 
-<form action="" method="POST">
-{% csrf_token %}
-    <div class="container">
-    <h1>Add ToDo action</h1>
-    {% include 'partial/form_field.html'  with field=form.status%}
-    {% include 'partial/form_field.html'  with field=form.description%}
-    {% include 'partial/form_field.html'  with field=form.long_description%}
-    {% include 'partial/form_field.html'  with field=form.deadline%}
-        <br>
-    <button type="submit" class="btn btn-secondary">Отправить</button>
-    </div>
-</form>
+
+        {% include 'partial/form.html' with form_method="POST" btn_name='Создать' action='Create' %}
+{##}
+{#<form action="" method="POST">#}
+{#{% csrf_token %}#}
+{#    <div class="container">#}
+{#    <h1>Add ToDo action</h1>#}
+{#        {% for field in form %}#}
+{#            {% include 'partial/form_field.html'%}#}
+{#        {% endfor %}#}
+{##}
+{#        <br>#}
+{#    <button type="submit" class="btn btn-secondary">Отправить</button>#}
+{#    </div>#}
+{#</form>#}
 {% endblock %}
 </body>
 </html>

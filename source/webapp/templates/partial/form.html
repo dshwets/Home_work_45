@@ -1,0 +1,12 @@
+<form action="{{ action_url }}" method="{{ form_method }}">
+{% csrf_token %}
+    <div class="container">
+    <h1>{{ action }} ToDo action</h1>
+        {% for field in form %}
+            {% include 'partial/form_field.html'%}
+        {% endfor %}
+
+        <br>
+    <button type="submit" class="btn btn-secondary">{{ btn_name|default:"Отправить" }}</button>
+    </div>
+</form>
