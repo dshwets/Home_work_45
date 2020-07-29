@@ -9,20 +9,17 @@ TODO List
 {% endblock %}
 {% block content %}
 
-    <div class="container">
     <h3 class="mt-5 mb-4">ToDo List</h3>
         {% for to_do_action in to_do_list %}
         <p>Description: <a href="{% url 'watch_todo' to_do_action.pk %}">{{ to_do_action.description }}</a></p>
         <p>Status: {{ to_do_action.get_status_display }}</p>
         <p>Deadline: {{ to_do_action.deadline }}</p>
            <form class="d-inline" action="{% url 'delete_todo' to_do_action.pk %}" method="get">
-{#            {% csrf_token %}    #}
             <button type="submit" class="btn btn-secondary">Удалить</button>
             </form>
             <a href="{% url 'update_todo' to_do_action.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>
         <br><br>
         {% endfor %}
-    </div>
 {% endblock %}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

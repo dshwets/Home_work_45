@@ -6,7 +6,8 @@ Delete
 <h1>Are you sure to delete todo action: {{ todo_action }}</h1>
     <form method="POST" action="{% url 'delete_todo' todo_action.pk%}">
         {% csrf_token %}
-        <p><input type="submit" value="Confirm"></p>
-        <p><a href="{% url 'watch_todo' todo_action.pk %}">Отмена</a></p>
+{#        <input type="submit" value="Confirm">#}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'watch_todo' todo_action.pk %}"><button type="button" class="btn btn-secondary">Отмена</button></a>
     </form>
 {% endblock %}
