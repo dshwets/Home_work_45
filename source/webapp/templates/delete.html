@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+Delete
+{% endblock %}
+{% block content %}
+<h1>Are you sure to delete todo action: {{ todo_action }}</h1>
+    <form method="POST" action="{% url 'delete_todo' todo_action.pk%}">
+        {% csrf_token %}
+        <p><input type="submit" value="Confirm"></p>
+        <p><a href="{% url 'watch_todo' todo_action.pk %}">Отмена</a></p>
+    </form>
+{% endblock %}

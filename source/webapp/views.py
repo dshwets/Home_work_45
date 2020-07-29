@@ -13,15 +13,13 @@ def index_view(request):
         return render(request, 'index.html', context)
 
 
-def delete_todo_action(request):
-    to_do_action_id = request.POST.get('id')
-    to_do_action = TO_DO_List.objects.get(pk=to_do_action_id)
-    to_do_action.delete()
-    to_do_list = TO_DO_List.objects.all()
-    context = {
-        'to_do_list': to_do_list
-    }
-    return render(request, 'index.html', context)
+def delete_todo_action(request, pk):
+    todo_action = get_object_or_404(TO_DO_List, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'delete.html', context={'todo_action': todo_action})
+    elif request.method == 'POST':
+        todo_action.delete()
+        return redirect('index_view')
 
 
 def create_todo_action(request):
@@ -62,6 +60,7 @@ def update_todo(request, pk):
             'long_description': todo_action.long_description,
             'deadline': todo_action.deadline
             })
+        print(todo_action.status)
         return render(request, 'update_to_do_action.html', context={'form': form,
                                                                     'todo_action': todo_action})
     elif request.method == 'POST':

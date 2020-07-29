@@ -21,6 +21,6 @@ urlpatterns = [
     path('', index_view, name='index_view'),
     path('add/', create_todo_action, name='add'),
     path('todo/<int:pk>', watch_todo, name='watch_todo'),
-    path('todo/delete', delete_todo_action),
+    path('todo/<int:pk>/delete', delete_todo_action, name='delete_todo'),
     path('todo/<int:pk>/update', update_todo, name='update_todo')
 ]
