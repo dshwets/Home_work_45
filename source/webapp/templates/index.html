@@ -11,9 +11,10 @@ TODO List
 
     <h3 class="mt-5 mb-4">ToDo List</h3>
         {% for to_do_action in to_do_list %}
-        <p>Description: <a href="{% url 'watch_todo' to_do_action.pk %}">{{ to_do_action.description }}</a></p>
-        <p>Status: {{ to_do_action.get_status_display }}</p>
-        <p>Deadline: {{ to_do_action.deadline }}</p>
+        <p>Summary: <a href="{% url 'watch_todo' to_do_action.pk %}">{{ to_do_action.summary }}</a></p>
+        <p>Description: {{ to_do_action.description }}</p>
+        <p>Status: {{ to_do_action.status }}</p>
+        <p>Created at: {{ to_do_action.created_at }}</p>
            <form class="d-inline" action="{% url 'delete_todo' to_do_action.pk %}" method="get">
             <button type="submit" class="btn btn-secondary">Удалить</button>
             </form>

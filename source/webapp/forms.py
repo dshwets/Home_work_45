@@ -1,7 +1,5 @@
 from django import forms
-from .models import STATUS_CHOICES
-
-default_status = STATUS_CHOICES[0][0]
+from .models import Statuses, Issues
 
 
 class DateInput(forms.DateInput):
@@ -10,7 +8,7 @@ class DateInput(forms.DateInput):
 
 class ToDoForm(forms.Form):
     summary = forms.CharField(max_length=3000, required=True, label='Описание', widget=forms.Textarea)
-    long_description = forms.CharField(max_length=3000, required=False, label='Описание подробное', initial=None,
+    description = forms.CharField(max_length=3000, required=False, label='Описание подробное', initial=None,
                                        widget=forms.Textarea)
-    status = forms.ChoiceField(choices=STATUS_CHOICES, initial=default_status, label='Статус')
-    deadline = forms.DateField(required=False, initial=None, label='Дата выполнения', widget=DateInput)
+    status = forms.ModelChoiceField(queryset=Statuses.objects.all(), required=True, label='Статус', empty_label=None)
+    issue = forms.ModelChoiceField(queryset=Issues.objects.all(), required=True, label='Тип задачи', empty_label=None)
