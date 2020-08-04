@@ -19,14 +19,14 @@ class TO_DO_List(models.Model):
 
 
 class Statuses(models.Model):
-    statuses = models.CharField(max_length=40, null=False, blank=False, verbose_name='Статус')
+    status = models.CharField(max_length=40, null=False, blank=False, verbose_name='Статус')
 
     def __str__(self):
         return self.statuses[:20]
 
 
 class Issues(models.Model):
-    issues = models.CharField(max_length=40, null=False, blank=False, default='new', verbose_name='Статус')
+    issue = models.CharField(max_length=40, null=False, blank=False, default='new', verbose_name='Статус')
 
     def __str__(self):
         return self.issues[:20]
