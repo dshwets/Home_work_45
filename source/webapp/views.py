@@ -77,15 +77,15 @@ class UpdateTodoView(View):
     def post(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         todo_action = get_object_or_404(TO_DO_List, pk=pk)
-        form = ToDoForm(data=request.POST)
+        form = ToDoForm(data=self.request.POST)
 
         if form.is_valid():
             print(form.cleaned_data['status'])
-            print(form.cleaned_data['status'])
-            todo_action.summary = form.cleaned_data['summary'],
-            todo_action.description = form.cleaned_data['description'],
-            todo_action.status = form.cleaned_data['status'],
-            todo_action.issue = form.cleaned_data['issue'],
+            print(todo_action.status)
+            todo_action.summary = form.cleaned_data['summary']
+            todo_action.description = form.cleaned_data['description']
+            todo_action.status = form.cleaned_data['status']
+            todo_action.issue = form.cleaned_data['issue']
             todo_action.save()
             return redirect('watch_todo', pk=todo_action.pk)
         else:

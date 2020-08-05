@@ -4,6 +4,9 @@ Delete
 {% endblock %}
 {% block content %}
 <h1>Are you sure to delete todo action: {{ todo_action }}</h1>
+    <p>{{ todo_action.description }}</p>
+    <p>Status:{{ todo_action.status }} <br>Issue:{{ todo_action.issue }}</p>
+    <p>Created: {{ todo_action.created_at }}</p>
     <form method="POST" action="{% url 'delete_todo' todo_action.pk%}">
         {% csrf_token %}
 {#        <input type="submit" value="Confirm">#}
