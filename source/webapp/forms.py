@@ -11,4 +11,5 @@ class ToDoForm(forms.Form):
     description = forms.CharField(max_length=3000, required=False, label='Описание подробное', initial=None,
                                   widget=forms.Textarea)
     status = forms.ModelChoiceField(queryset=Statuses.objects.all(), required=True, label='Статус', empty_label=None)
-    issue = forms.ModelChoiceField(queryset=Issues.objects.all(), required=True, label='Тип задачи', empty_label=None)
+    issue = forms.ModelMultipleChoiceField(queryset=Issues.objects.all(), required=True, label='Тип задачи',
+                                           widget=forms.CheckboxSelectMultiple)

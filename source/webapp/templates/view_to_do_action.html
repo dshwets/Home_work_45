@@ -19,7 +19,9 @@
     <div class="d-flex"><p class="d-inline">Long_description: </p> <pre class="border d-inline-block mb-0 ml-2">{{ to_do_action.description }}</pre>
     </div>
 {#    <p>Description: {{ to_do_action.description }}</p>#}
-    <p>Type: {{ to_do_action.issue }}</p>
+    <p>Type:{% for issue in to_do_action.issue.all  %}
+            {{ issue }}|
+    {% endfor %}</p>
     <p>Status: {{ to_do_action.status }}</p>
     <p>Created at: {{ to_do_action.created_at }}</p>
     <br><br>
