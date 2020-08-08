@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotAllowed
 from webapp.models import TO_DO_List
 from webapp.forms import ToDoForm
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, FormView
+from django.urls import reverse
 
 
 class IndexView(TemplateView):
@@ -27,27 +28,28 @@ class DeleteTodoView(View):
         return redirect('index_view')
 
 
-class CreateTodoView(View):
-    def get(self, request):
-        if request.method == 'GET':
-            return render(request, 'create_todo_action.html', context={
-                'form': ToDoForm()
-            })
+class CreateTodoView(FormView):
+    template_name = 'create_todo_action.html'
+    form_class = ToDoForm
 
-    def post(self, request):
-        form = ToDoForm(data=request.POST)
-        if form.is_valid():
-            to_do_action = TO_DO_List.objects.create(
-                summary=form.cleaned_data['summary'],
-                description=form.cleaned_data['description'],
-                status=form.cleaned_data['status'],
-                issue=form.cleaned_data['issue'],
-            )
-            return redirect('watch_todo', to_do_action.pk)
-        else:
-            return render(request, 'create_todo_action.html', context={
-                'form': form
-            })
+    def form_valid(self, form):
+        data = {}
+        for key, value in form.cleaned_data.items():
+            print(key, value)
+
+            if value is not None:
+                if key == 'issue':
+                    print(type(value))
+                    pass
+                else:
+                    data[key] = value
+        print(data)
+        self.todo_action = TO_DO_List.objects.create(**data)
+        self.todo_action.issue.set(form.cleaned_data['issue'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('watch_todo', kwargs={'pk': self.todo_action.pk})
 
 
 class WatchTodoView(TemplateView):
@@ -60,34 +62,42 @@ class WatchTodoView(TemplateView):
         return context
 
 
-class UpdateTodoView(View):
-    def get(self, request, *args, **kwargs):
-        pk = self.kwargs.get('pk')
-        todo_action = get_object_or_404(TO_DO_List, pk=pk)
-        form = ToDoForm(initial={
-            'summary': todo_action.summary,
-            'description': todo_action.description,
-            'status': todo_action.status,
-            'issue': todo_action.issue,
-            'created_at': todo_action.created_at
-        })
-        return render(request, 'update_to_do_action.html', context={'form': form,
-                                                                    'todo_action': todo_action})
+class UpdateTodoView(FormView):
+    template_name = 'update_to_do_action.html'
+    form_class = ToDoForm
 
-    def post(self, request, *args, **kwargs):
-        pk = self.kwargs.get('pk')
-        todo_action = get_object_or_404(TO_DO_List, pk=pk)
-        form = ToDoForm(data=self.request.POST)
+    def get_initial(self):
+        initial = {}
+        for key in 'summary', 'description', 'status':
+            initial[key] = getattr(self.todo_action, key)
+            initial['issue'] = self.todo_action.issue.all()
+        return initial
 
-        if form.is_valid():
-            print(form.cleaned_data['status'])
-            print(todo_action.status)
-            todo_action.summary = form.cleaned_data['summary']
-            todo_action.description = form.cleaned_data['description']
-            todo_action.status = form.cleaned_data['status']
-            todo_action.issue = form.cleaned_data['issue']
-            todo_action.save()
-            return redirect('watch_todo', pk=todo_action.pk)
-        else:
-            return render(request, 'update_to_do_action.html', context={'form': form,
-                                                                        'todo_action': todo_action})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['todo_action'] = self.todo_action
+        return context
+
+    def form_valid(self, form):
+        self.todo_action.summary = form.cleaned_data['summary']
+        self.todo_action.description = form.cleaned_data['description']
+        self.todo_action.status = form.cleaned_data['status']
+        self.todo_action.issue.set(form.cleaned_data['issue'])
+        self.todo_action.save()
+        return super().form_valid(form)
+        # for key, value in form.cleaned_data.items(): ## вот эта часть кода не работает
+        #     if value is not None:
+        #         setattr(self.todo_action, key, value)
+        # self.todo_action.save()
+        # return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        self.todo_action = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(TO_DO_List, pk=pk)
+
+    def get_success_url(self):
+        return reverse('watch_todo', kwargs={'pk': self.todo_action.pk})
