@@ -34,18 +34,13 @@ class CreateTodoView(FormView):
 
     def form_valid(self, form):
         data = {}
+        print(form.cleaned_data)
+        issue = form.cleaned_data.pop('issue')
         for key, value in form.cleaned_data.items():
-            print(key, value)
-
             if value is not None:
-                if key == 'issue':
-                    print(type(value))
-                    pass
-                else:
                     data[key] = value
-        print(data)
         self.todo_action = TO_DO_List.objects.create(**data)
-        self.todo_action.issue.set(form.cleaned_data['issue'])
+        self.todo_action.issue.set(issue)
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -57,7 +52,6 @@ class WatchTodoView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(kwargs)
         context['to_do_action'] = get_object_or_404(TO_DO_List, pk=kwargs['pk'])
         return context
 
@@ -70,7 +64,7 @@ class UpdateTodoView(FormView):
         initial = {}
         for key in 'summary', 'description', 'status':
             initial[key] = getattr(self.todo_action, key)
-            initial['issue'] = self.todo_action.issue.all()
+        initial['issue'] = self.todo_action.issue.all()
         return initial
 
     def get_context_data(self, **kwargs):
@@ -79,17 +73,13 @@ class UpdateTodoView(FormView):
         return context
 
     def form_valid(self, form):
-        self.todo_action.summary = form.cleaned_data['summary']
-        self.todo_action.description = form.cleaned_data['description']
-        self.todo_action.status = form.cleaned_data['status']
-        self.todo_action.issue.set(form.cleaned_data['issue'])
+        issue = form.cleaned_data.pop('issue')
+        for key, value in form.cleaned_data.items():
+            if value is not None:
+                setattr(self.todo_action, key, value)    ##setattr(x,y,z) = x.y = z
+        self.todo_action.issue.set(issue)
         self.todo_action.save()
         return super().form_valid(form)
-        # for key, value in form.cleaned_data.items(): ## вот эта часть кода не работает
-        #     if value is not None:
-        #         setattr(self.todo_action, key, value)
-        # self.todo_action.save()
-        # return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
         self.todo_action = self.get_object()
