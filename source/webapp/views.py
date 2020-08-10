@@ -6,6 +6,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.urls import reverse
 
 
+
 class IndexView(TemplateView):
     template_name = 'index.html'
 
@@ -33,14 +34,7 @@ class CreateTodoView(FormView):
     form_class = ToDoForm
 
     def form_valid(self, form):
-        data = {}
-        print(form.cleaned_data)
-        issue = form.cleaned_data.pop('issue')
-        for key, value in form.cleaned_data.items():
-            if value is not None:
-                    data[key] = value
-        self.todo_action = TO_DO_List.objects.create(**data)
-        self.todo_action.issue.set(issue)
+        self.todo_action = form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -60,12 +54,12 @@ class UpdateTodoView(FormView):
     template_name = 'update_to_do_action.html'
     form_class = ToDoForm
 
-    def get_initial(self):
-        initial = {}
-        for key in 'summary', 'description', 'status':
-            initial[key] = getattr(self.todo_action, key)
-        initial['issue'] = self.todo_action.issue.all()
-        return initial
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        print(kwargs)
+        kwargs.pop('initial')
+        kwargs['instance'] = self.todo_action
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,12 +67,7 @@ class UpdateTodoView(FormView):
         return context
 
     def form_valid(self, form):
-        issue = form.cleaned_data.pop('issue')
-        for key, value in form.cleaned_data.items():
-            if value is not None:
-                setattr(self.todo_action, key, value)    ##setattr(x,y,z) = x.y = z
-        self.todo_action.issue.set(issue)
-        self.todo_action.save()
+        self.todo_action = form.save()
         return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
