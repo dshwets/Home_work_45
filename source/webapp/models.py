@@ -1,12 +1,34 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxLengthValidator, MinLengthValidator, BaseValidator
 from django.db import models
+from django.utils.deconstruct import deconstructible
 
 STATUS_CHOICES = [('new', 'Новая'), ('in_progress', 'В процессе'), ('done', 'Сделано')]
 
 
+# @deconstructible
+# class MinLengthValidator(BaseValidator):
+#     message = 'Value "%(value)s" has length of %(show_value)d! It should be at least %(limit_value)d symbols long!'
+#     code = 'too_short'
+#
+#     def compare(self, value, limit):
+#         return value < limit
+#
+#     def clean(self, value):
+#         return len(value)
+#
+#
+# def at_least_10(string):
+#     if len(string) < 10:
+#         raise ValidationError('This value is too short!')
+##TODO протестировать все валидаторы, понять плюсы и минусы каждого.
+
+
 class TO_DO_List(models.Model):
-    summary = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Описание')
+    summary = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Описание',
+                               validators=[MinLengthValidator(10),])
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание подробное',
-                                        default=None)
+                                   default=None)
     status = models.ForeignKey('webapp.Statuses', related_name='statuses', on_delete=models.PROTECT,
                                verbose_name='Статус')
     issue = models.ManyToManyField('webapp.Issues', related_name='issueses', blank=False, verbose_name='Тип задачи')

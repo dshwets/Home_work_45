@@ -56,7 +56,6 @@ class UpdateTodoView(FormView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        print(kwargs)
         kwargs.pop('initial')
         kwargs['instance'] = self.todo_action
         return kwargs
