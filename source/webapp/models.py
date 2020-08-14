@@ -33,6 +33,7 @@ class TO_DO_List(models.Model):
                                verbose_name='Статус')
     issue = models.ManyToManyField('webapp.Issues', related_name='issueses', blank=False, verbose_name='Тип задачи')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
 
     def __str__(self):
         return "{}. {}".format(self.pk, self.summary)
