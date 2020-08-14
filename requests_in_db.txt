@@ -1,0 +1,23 @@
+1.TO_DO_List.objects.filter(updated_at__gt=(datetime.now()-timedelta(days=30)),status__status__icontains='done')
+2.TO_DO_List.objects.filter(status__status__in=['In_Progress','Done'], issue__issue__in=['Enhancement','In_Progress']).distinct()
+3.
+	q1=Q(status__status__icontains='done')
+	q2 = Q(summary__icontains='bug')
+	q3 = Q(issue__issue__icontains='bug')
+	TO_DO_List.objects.filter(q2|q3).exclude(q1)
+Бонус 1
+1.TO_DO_List.objects.filter(updated_at__gt=(datetime.now()-timedelta(days=30)),status__status__icontains='done').only('id','summary','issue','status')
+2.TO_DO_List.objects.filter(status__status__in=['In_Progress','Done'], issue__issue__in=['Enhancement','In_Progress']).distinct().only('id','summary','issue','status')
+3.
+	q1=Q(status__status__icontains='done')
+	q2 = Q(summary__icontains='bug')
+	q3 = Q(issue__issue__icontains='bug')
+	TO_DO_List.objects.filter(q2|q3).exclude(q1).only('id','summary','issue','status')
+Бонус 2
+TO_DO_List.objects.exclude(updated_at__date=F('created_at__date')) ---- ????
+TO_DO_List.objects.values('issue__issue').annotate(qty=Count('issue__issue'))
+
+
+
+
+
