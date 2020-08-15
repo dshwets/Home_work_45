@@ -16,7 +16,11 @@
 Бонус 2
 вариант№1 TO_DO_List.objects.exclude(updated_at__date=F('created_at__date')) --- не пашет, разбирались с фаридом, Ф объект не подтягивает таймзон, а обычное поле подтягивает. Поэтому остается только вариант 2 рабочий )
 вариант№2 TO_DO_List.objects.filter(created_at__date__lt=F('updated_at__date'))
-TO_DO_List.objects.values('issue__issue').annotate(qty=Count('issue__issue'))
+	
+	2.2 TO_DO_List.objects.values('issue__issue').annotate(qty=Count('issue__issue'))
+
+Бонус, который добавили в сб :)
+3 TO_DO_List.objects.filter(summary=F('description'))
 
 Для того, что бы запросы сработали нужно:
 from webapp.models import Statuses,TO_DO_List,Issues

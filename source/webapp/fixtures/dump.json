@@ -218,6 +218,18 @@
   }
 },
 {
+  "model": "webapp.to_do_list",
+  "pk": 20,
+  "fields": {
+    "summary": "test",
+    "description": "test",
+    "status": 1,
+    "created_at": "2020-08-15T16:47:30.865Z",
+    "updated_at": "2020-08-15T16:47:30.865Z",
+    "issue": []
+  }
+},
+{
   "model": "webapp.statuses",
   "pk": 1,
   "fields": {
