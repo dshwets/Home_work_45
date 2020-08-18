@@ -24,3 +24,7 @@ class ToDoForm(forms.ModelForm):
         if errors:
             raise ValidationError(errors)
         return cleaned_data
+
+
+class SeacrhForm(forms.Form):
+    search = forms.CharField(max_length=50, required=False, label='Найти')
