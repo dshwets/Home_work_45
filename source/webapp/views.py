@@ -39,7 +39,7 @@ class SeacrhView(ListView):
         return queryset
 
     def get_query(self):
-        self.query= None
+        self.query= Q()
         return self.query
 
 
