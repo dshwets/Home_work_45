@@ -27,15 +27,15 @@ def at_least_10(string):
 
 
 class TO_DO_List(models.Model):
-    summary = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Описание',
+    summary = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Описание:',
                                validators=[MinLengthValidator(10), ])
-    description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание подробное',
+    description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание подробное:',
                                    default=None, validators=[at_least_10, ])
     status = models.ForeignKey('webapp.Statuses', related_name='statuses', on_delete=models.PROTECT,
-                               verbose_name='Статус')
-    issue = models.ManyToManyField('webapp.Issues', related_name='issueses', blank=False, verbose_name='Тип задачи')
+                               verbose_name='Статус:')
+    issue = models.ManyToManyField('webapp.Issues', related_name='issueses', blank=False, verbose_name='Тип задачи:')
     project = models.ForeignKey('webapp.Project', related_name='projects', on_delete=models.PROTECT,
-                                verbose_name='Проект1')
+                                verbose_name='Название проекта:')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
 

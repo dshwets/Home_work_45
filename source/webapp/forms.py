@@ -11,7 +11,7 @@ class DateInput(forms.DateInput):
 class ToDoForm(forms.ModelForm):
     class Meta:
         model = TO_DO_List
-        fields = ['summary', 'description', 'status', 'issue']
+        fields = ['summary', 'description', 'status', 'issue', 'project']
         widgets = {'issue': forms.CheckboxSelectMultiple}
 
     def clean(self):

@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotAllowed
 from django.utils.http import urlencode
 
 from webapp.models import TO_DO_List
@@ -45,7 +44,7 @@ class SeacrhView(ListView):
 
 
 class IndexView(SeacrhView):
-    template_name = 'index.html'
+    template_name = 'todo/index.html'
     model = TO_DO_List
     context_object_name = 'to_do_list'
     ordering = ['-created_at']
@@ -61,7 +60,7 @@ class DeleteTodoView(View):
     def get(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         todo_action = get_object_or_404(TO_DO_List, pk=pk)
-        return render(request, 'delete.html', context={'todo_action': todo_action})
+        return render(request, 'todo/delete.html', context={'todo_action': todo_action})
 
     def post(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
@@ -71,7 +70,7 @@ class DeleteTodoView(View):
 
 
 class CreateTodoView(FormView):
-    template_name = 'create_todo_action.html'
+    template_name = 'todo/create_todo_action.html'
     form_class = ToDoForm
 
     def form_valid(self, form):
@@ -83,7 +82,7 @@ class CreateTodoView(FormView):
 
 
 class WatchTodoView(TemplateView):
-    template_name = 'view_to_do_action.html'
+    template_name = 'todo/view_to_do_action.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -92,7 +91,7 @@ class WatchTodoView(TemplateView):
 
 
 class UpdateTodoView(FormView):
-    template_name = 'update_to_do_action.html'
+    template_name = 'todo/update_to_do_action.html'
     form_class = ToDoForm
 
     def get_form_kwargs(self):
