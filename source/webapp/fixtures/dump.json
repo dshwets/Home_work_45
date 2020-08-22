@@ -6,6 +6,7 @@
     "summary": "Test 1",
     "description": "test1",
     "status": 3,
+    "project": 1,
     "created_at": "2020-08-05T06:04:27.720Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -20,6 +21,7 @@
     "summary": "test timerrr",
     "description": "kekkkk",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-05T13:23:16.298Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -34,6 +36,7 @@
     "summary": "lolz",
     "description": "asdasd",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-08T09:25:36.364Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -49,6 +52,7 @@
     "summary": "lolz",
     "description": "asdasd",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-08T09:25:49.000Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -64,6 +68,7 @@
     "summary": "lolz",
     "description": "asdasd",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-08T09:27:16.438Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -79,6 +84,7 @@
     "summary": "bug",
     "description": "asdasd",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-08T09:27:45.557Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -94,6 +100,7 @@
     "summary": "Bug",
     "description": "asdasd",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-08T09:54:56.209Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -109,6 +116,7 @@
     "summary": "test with queryset",
     "description": "kekw",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-08T09:57:20.758Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -123,6 +131,7 @@
     "summary": "test queryset 2",
     "description": "i did it!!!",
     "status": 3,
+    "project": 1,
     "created_at": "2020-08-08T10:00:40.470Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -137,6 +146,7 @@
     "summary": "new test 1-2-3",
     "description": "kekekekekek",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-09T07:48:30.089Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -152,6 +162,7 @@
     "summary": "do Home_WORK ASAP",
     "description": "make it great ?",
     "status": 2,
+    "project": 1,
     "created_at": "2020-08-10T18:08:37.742Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -167,6 +178,7 @@
     "summary": "check first task",
     "description": "is it work ?!",
     "status": 3,
+    "project": 1,
     "created_at": "2020-08-10T18:11:09.891Z",
     "updated_at": "2020-08-14T18:25:00.050Z",
     "issue": [
@@ -182,6 +194,7 @@
     "summary": "for testing",
     "description": "looolzaasdasdasdadasdsa",
     "status": 3,
+    "project": 1,
     "created_at": "2020-08-14T19:37:58.442Z",
     "updated_at": "2020-08-14T19:37:58.442Z",
     "issue": [
@@ -196,6 +209,7 @@
     "summary": "\u0444\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u0444",
     "description": "\u0444\u044b\u0432\u0444\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u0444\u044b",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-14T20:02:23.588Z",
     "updated_at": "2020-08-14T20:02:23.588Z",
     "issue": [
@@ -210,6 +224,7 @@
     "summary": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u0432\u044b\u043a\u0438\u043d\u0435\u0442 \u043b\u0438 \u043f\u043e\u043b\u0435 \u044d\u0442\u043e \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430",
     "description": "\u0444\u044b\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u044b\u0444\u0432\u0444\u044b\u0444\u044b\u0432",
     "status": 2,
+    "project": 1,
     "created_at": "2020-08-14T20:02:43.604Z",
     "updated_at": "2020-08-14T20:02:43.604Z",
     "issue": [
@@ -224,9 +239,26 @@
     "summary": "test",
     "description": "test",
     "status": 1,
+    "project": 1,
     "created_at": "2020-08-15T16:47:30.865Z",
     "updated_at": "2020-08-15T16:47:30.865Z",
     "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 21,
+  "fields": {
+    "summary": "testtesttest",
+    "description": "kekwasdasdasdas",
+    "status": 2,
+    "project": 1,
+    "created_at": "2020-08-22T11:24:39.725Z",
+    "updated_at": "2020-08-22T11:24:39.725Z",
+    "issue": [
+      2,
+      3
+    ]
   }
 },
 {
@@ -272,11 +304,21 @@
   }
 },
 {
+  "model": "webapp.project",
+  "pk": 1,
+  "fields": {
+    "begin_date": "2020-08-21",
+    "end_date": null,
+    "title": "\u0412\u0435\u0441\u044c \u0448\u043b\u0430\u043a, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043d\u0435 \u043f\u043e\u043d\u044f\u0442\u043d\u043e \u043a \u0447\u0435\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f",
+    "description": "\u0422\u0443\u0442 \u043d\u0435\u0442 \u043d\u0438\u0447\u0435\u0433\u043e \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u043e\u0433\u043e"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$X8geaQmv7zcz$gwcAakr46r7XK9u2OnzlEpj2CSlaniv3DrNfD25JNJc=",
-    "last_login": "2020-08-08T10:11:00.177Z",
+    "last_login": "2020-08-22T11:23:34.754Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",

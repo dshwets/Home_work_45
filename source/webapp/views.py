@@ -57,44 +57,6 @@ class IndexView(SeacrhView):
         return self.query
 
 
-
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     if self.search_value:
-    #         pass
-    #         query = super().get_query()
-    #         queryset = queryset.filter(query)
-    #     return queryset
-    #
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(object_list=None, **kwargs)
-    #     context['form'] = self.form
-    #     if self.search_value:
-    #         context['query'] = urlencode({'search': self.search_value})
-    #     return context
-
-    # def get(self, request, *args, **kwargs):
-    #     self.form = self.get_search_form()
-    #     self.search_value = self.get_search_value()
-    #     return super().get(request, *args, **kwargs)
-
-    # def get_search_form(self):
-    #     return SeacrhForm(self.request.GET)
-    #
-    # def get_search_value(self):
-    #     if self.form.is_valid():
-    #         return self.form.cleaned_data['search']
-    #     return None
-
-    # def get_search_form(self):
-    #     return SeacrhForm(self.request.GET)
-    #
-    # def get_search_value(self):
-    #     if self.form.is_valid():
-    #         return self.form.cleaned_data['search']
-    #     return None
-
-
 class DeleteTodoView(View):
     def get(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
