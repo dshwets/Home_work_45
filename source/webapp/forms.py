@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Statuses, Issues, TO_DO_List
+from .models import Statuses, Issues, TO_DO_List, Project
 
 
 class DateInput(forms.DateInput):
@@ -11,7 +11,7 @@ class DateInput(forms.DateInput):
 class ToDoForm(forms.ModelForm):
     class Meta:
         model = TO_DO_List
-        fields = ['summary', 'description', 'status', 'issue', 'project']
+        fields = ['summary', 'description', 'status', 'issue']
         widgets = {'issue': forms.CheckboxSelectMultiple}
 
     def clean(self):
@@ -28,3 +28,9 @@ class ToDoForm(forms.ModelForm):
 
 class SeacrhForm(forms.Form):
     search = forms.CharField(max_length=50, required=False, label='Найти')
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['begin_date', 'end_date', 'title', 'description']

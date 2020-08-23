@@ -4,9 +4,6 @@
 {% endblock %}
 {% block menu %}
         <li class="nav-item active">
-        <a class="nav-link" href="{% url 'add' %}">Add new TODO <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
         <a class="nav-link" href="{% url 'update_todo' to_do_action.pk %}">Update TODO <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
@@ -26,5 +23,3 @@
     <p>Created at: {{ to_do_action.created_at }}</p>
     <br><br>
 {% endblock %}
-</body>
-</html>

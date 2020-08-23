@@ -1,10 +1,8 @@
 {% extends 'todo/../base.html' %}
 {% block title %}Create TODO{% endblock %}
 {% block content %}
-
-    {% url 'add' as action_url %}
-    {% include 'partial/form.html' with form_method="POST" btn_name='Создать' action='Create' action_url=action_url %}
-
+    <h1>Create ToDo</h1>
+    {% include 'partial/form.html' with form_method="POST" %}
+{#    {% include 'partial/form.html' with form_method='post' %}#}
 {% endblock %}
-</body>
-</html>
+
