@@ -2,9 +2,9 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
 
-from webapp.models import TO_DO_List
+from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm
-from django.views.generic import View, TemplateView, FormView, ListView
+from django.views.generic import View, TemplateView, FormView, ListView, CreateView
 from django.urls import reverse
 
 
@@ -69,16 +69,21 @@ class DeleteTodoView(View):
         return redirect('index_view')
 
 
-class CreateTodoView(FormView):
-    template_name = 'todo/create_todo_action.html'
+class CreateTodoView(CreateView):
+    model = TO_DO_List
     form_class = ToDoForm
+    template_name = 'todo/create_todo_action.html'
 
     def form_valid(self, form):
-        self.todo_action = form.save()
-        return super().form_valid(form)
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        to_do_action = form.save(commit=False)
+        to_do_action.project = project
+        to_do_action.save()
+        form.save_m2m()
+        return redirect('watch_project', pk=project.pk)
 
-    def get_success_url(self):
-        return reverse('watch_todo', kwargs={'pk': self.todo_action.pk})
+    # def get_success_url(self):
+    #     return reverse('watch_todo', kwargs={'pk': self.object.pk})
 
 
 class WatchTodoView(TemplateView):

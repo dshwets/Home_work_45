@@ -19,6 +19,7 @@ class Watch_project_view(DetailView):
     model = Project
 
 
+
 class Create_project_view(CreateView):
     model = Project
     form_class = ProjectForm
@@ -38,4 +39,5 @@ class ProjectToDoCreateView(CreateView):
         to_do_action = form.save(commit=False)
         to_do_action.project = project
         to_do_action.save()
+        form.save_m2m()
         return redirect('watch_project', pk=project.pk)
