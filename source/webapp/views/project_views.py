@@ -4,7 +4,7 @@ from django.utils.http import urlencode
 
 from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm, ProjectForm
-from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView
+from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse
 
 
@@ -41,3 +41,12 @@ class ProjectToDoCreateView(CreateView):
         to_do_action.save()
         form.save_m2m()
         return redirect('watch_project', pk=project.pk)
+
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    form_class = ProjectForm
+    template_name = 'project/update_project.html'
+
+    def get_success_url(self):
+        return reverse('watch_project', kwargs={'pk': self.object.pk})
