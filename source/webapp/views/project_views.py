@@ -16,6 +16,7 @@ class Project_view(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        print(queryset)
         queryset = queryset.filter(is_active=True)
         return queryset
 

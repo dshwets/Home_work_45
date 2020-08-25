@@ -32,9 +32,10 @@ class SeacrhView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.search_value:
-            pass
             query = self.get_query()
             queryset = queryset.filter(query)
+
+        queryset = queryset.filter(project__is_active = True)
         return queryset
 
     def get_query(self):
