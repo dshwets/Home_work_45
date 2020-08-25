@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
 
@@ -23,6 +23,14 @@ class Project_view(ListView):
 class Watch_project_view(DetailView):
     template_name = 'project/watch_project.html'
     model = Project
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not self.object.is_active:
+            raise Http404
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
 
 
 class Create_project_view(CreateView):
