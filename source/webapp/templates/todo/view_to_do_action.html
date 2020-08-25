@@ -9,6 +9,9 @@
         <li class="nav-item active">
         <a class="nav-link" href="{% url 'delete_todo' to_do_action.pk %}">Delete TODO <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'watch_project' to_do_action.project.pk %}">Go to Project <span class="sr-only">(current)</span></a>
+        </li>
 {% endblock %}
 {% block content %}
 <div class="container">

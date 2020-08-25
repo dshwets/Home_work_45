@@ -1,11 +1,12 @@
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
 
 from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm, ProjectForm
-from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, UpdateView
-from django.urls import reverse
+from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
 
 
 class Project_view(ListView):
@@ -13,11 +14,14 @@ class Project_view(ListView):
     model = Project
     context_object_name = 'projects'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_active=True)
+        return queryset
 
 class Watch_project_view(DetailView):
     template_name = 'project/watch_project.html'
     model = Project
-
 
 
 class Create_project_view(CreateView):
@@ -50,3 +54,17 @@ class ProjectUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('watch_project', kwargs={'pk': self.object.pk})
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'project/delete.html'
+    success_url = reverse_lazy('projects')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = super().get_success_url()
+        print(self.object.is_active)
+        self.object.is_active = False
+        self.object.save()
+        return HttpResponseRedirect(success_url)

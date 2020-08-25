@@ -64,6 +64,7 @@ class Project(models.Model):
                              validators=[MinLengthValidator(10), ])
     description = models.TextField(max_length=3000, null=False, blank=False,verbose_name='Описание проекта',
                                    validators=[MinLengthValidator(10), ])
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

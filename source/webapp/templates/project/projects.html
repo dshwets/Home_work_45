@@ -18,6 +18,7 @@ Projects List
         <p>Date of begining: {{ project.begin_date }}</p>
         <p>Expiration date: {{ project.end_date }}</p>
         <a href="{% url 'update_project' project.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>
+        <a href="{% url 'delete_project' project.pk %}"><button type="button" class="btn btn-danger">Удалить</button></a>
 
         <br><br>
         {% endfor %}

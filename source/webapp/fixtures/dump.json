@@ -234,19 +234,6 @@
 },
 {
   "model": "webapp.to_do_list",
-  "pk": 20,
-  "fields": {
-    "summary": "test",
-    "description": "test",
-    "status": 1,
-    "project": 1,
-    "created_at": "2020-08-15T16:47:30.865Z",
-    "updated_at": "2020-08-15T16:47:30.865Z",
-    "issue": []
-  }
-},
-{
-  "model": "webapp.to_do_list",
   "pk": 21,
   "fields": {
     "summary": "testtesttest",
@@ -255,6 +242,259 @@
     "project": 1,
     "created_at": "2020-08-22T11:24:39.725Z",
     "updated_at": "2020-08-22T11:24:39.725Z",
+    "issue": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 22,
+  "fields": {
+    "summary": "\u0442\u0435\u0441\u0442\u043e\u0432\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u043a",
+    "description": "\u0444\u0432\u0444\u044b\u0432\u0444\u0432\u0444\u044b\u0432\u0444\u044b\u0432",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-23T09:00:12.592Z",
+    "updated_at": "2020-08-24T12:49:38.232Z",
+    "issue": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 23,
+  "fields": {
+    "summary": "new_test_for",
+    "description": "asdasdasdadadas",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-23T09:31:10.565Z",
+    "updated_at": "2020-08-23T09:31:10.565Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 24,
+  "fields": {
+    "summary": "testArtursdasd",
+    "description": "lol kek cheburek",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T12:47:16.499Z",
+    "updated_at": "2020-08-24T12:47:16.499Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 25,
+  "fields": {
+    "summary": "testTESTTEST",
+    "description": "dasdasdssdasdasdasd",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T12:51:25.383Z",
+    "updated_at": "2020-08-24T12:51:25.383Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 26,
+  "fields": {
+    "summary": "getsuccestask",
+    "description": "lolololololololol",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T12:54:17.514Z",
+    "updated_at": "2020-08-24T12:54:17.514Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 27,
+  "fields": {
+    "summary": "asdasdasdasdasdasdasda",
+    "description": "asdasdadadadadasasdas",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:04:47.133Z",
+    "updated_at": "2020-08-24T13:04:47.133Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 28,
+  "fields": {
+    "summary": "asdasdasdakgndfjgdfnkgjdngjdnj",
+    "description": "akaslkdasldkasjdjlak",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:07:33.317Z",
+    "updated_at": "2020-08-24T13:07:33.317Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 29,
+  "fields": {
+    "summary": "kkasjdkasjdladjalkdkjas",
+    "description": "asdjasldajsdakljdkla",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:08:21.136Z",
+    "updated_at": "2020-08-24T13:08:21.136Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 30,
+  "fields": {
+    "summary": "kekekekekekekekekek",
+    "description": "kekekekekekekekke",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:18:15.918Z",
+    "updated_at": "2020-08-24T13:18:15.918Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 31,
+  "fields": {
+    "summary": "ahahhahahahahahaha",
+    "description": "ahhahahahahahah",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:20:38.535Z",
+    "updated_at": "2020-08-24T13:20:38.535Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 32,
+  "fields": {
+    "summary": "\u041e\u0447\u0435\u0440\u0435\u0434\u043d\u043e\u0439 \u0442\u0435\u0441\u0442",
+    "description": "\u0444\u044b\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u0444\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u0444",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:53:43.466Z",
+    "updated_at": "2020-08-24T13:53:43.466Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 33,
+  "fields": {
+    "summary": "\u0435\u0449\u0435 \u0442\u0435\u0441\u0442\u0438\u0438\u0438\u0438\u0438\u043a",
+    "description": "\u044b\u0444\u0432\u0444\u044b\u0432\u0444\u044b\u044b\u0432\u0444\u044b\u0432\u0444\u044b\u0432\u044b\u0444",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:55:10.202Z",
+    "updated_at": "2020-08-24T13:55:10.202Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 34,
+  "fields": {
+    "summary": "\u0439\u0446\u0446\u0439\u0443\u0448\u043e\u0444\u0432\u0448\u0444\u044b\u043e\u0432\u043b\u0434\u0444\u044b\u043e\u0432\u0444\u044b\u043b\u043e\u0432\u0444\u043b\u0434\u044b\u0432\u043e",
+    "description": "\u0444\u043b\u044b\u0432\u043e\u0444\u0434\u043b\u0432\u043e\u0444\u043b\u0434\u044b\u044b\u0432\u043e\u044b\u0444\u0434\u0432\u043e",
+    "status": 2,
+    "project": 2,
+    "created_at": "2020-08-24T13:57:20.495Z",
+    "updated_at": "2020-08-24T13:57:20.495Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 35,
+  "fields": {
+    "summary": "aasdasdasdasdasdasdas",
+    "description": "asdasdasdasdasdassda",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T14:23:29.950Z",
+    "updated_at": "2020-08-24T14:23:29.950Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 36,
+  "fields": {
+    "summary": "DJAHKDAHDKJASHDKAHDASKJDH",
+    "description": "SJHDFKJSHFSDJHFSKJFH",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T14:25:23.675Z",
+    "updated_at": "2020-08-24T14:25:23.675Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 37,
+  "fields": {
+    "summary": "asjdahdkjashdkasjhdaksjdhaskjh",
+    "description": "asjhdaksjdhaksjdjahk",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T14:30:07.239Z",
+    "updated_at": "2020-08-24T14:30:07.239Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 38,
+  "fields": {
+    "summary": "asjdahdkjashdkasjhdaksjdhaskjhdasda",
+    "description": "asjhdaksjdhaksjdjahk",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T14:30:48.908Z",
+    "updated_at": "2020-08-24T14:30:48.908Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 39,
+  "fields": {
+    "summary": "asjdahdkjashdkasjhgfghgghgh",
+    "description": "asjhdaksjdhaksjdjahk",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T14:31:19.888Z",
+    "updated_at": "2020-08-24T14:31:19.888Z",
+    "issue": []
+  }
+},
+{
+  "model": "webapp.to_do_list",
+  "pk": 43,
+  "fields": {
+    "summary": "kekekekkekekekeke",
+    "description": "kekekekekkeke",
+    "status": 1,
+    "project": 2,
+    "created_at": "2020-08-24T16:45:00.430Z",
+    "updated_at": "2020-08-24T16:45:00.430Z",
     "issue": [
       2,
       3
@@ -314,11 +554,21 @@
   }
 },
 {
+  "model": "webapp.project",
+  "pk": 2,
+  "fields": {
+    "begin_date": "2020-08-23",
+    "end_date": "2020-08-31",
+    "title": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0443\u043f\u0435\u0440\u043d\u043e\u0432\u044b\u0439 \u043f\u0440\u043e\u0435\u043a\u0442",
+    "description": "\u0422\u0443\u0442 \u0431\u0443\u0434\u0435\u0442 \u043e\u0447\u0435\u043d\u044c \u043a\u0440\u0443\u0442\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435."
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$X8geaQmv7zcz$gwcAakr46r7XK9u2OnzlEpj2CSlaniv3DrNfD25JNJc=",
-    "last_login": "2020-08-22T11:23:34.754Z",
+    "last_login": "2020-08-24T14:28:26.143Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",

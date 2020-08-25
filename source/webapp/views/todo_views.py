@@ -4,8 +4,8 @@ from django.utils.http import urlencode
 
 from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm
-from django.views.generic import View, TemplateView, FormView, ListView, CreateView, UpdateView
-from django.urls import reverse
+from django.views.generic import View, TemplateView, FormView, ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
 
 
 class SeacrhView(ListView):
@@ -56,17 +56,14 @@ class IndexView(SeacrhView):
         return self.query
 
 
-class DeleteTodoView(View):
-    def get(self, request, *args, **kwargs):
-        pk = self.kwargs.get('pk')
-        todo_action = get_object_or_404(TO_DO_List, pk=pk)
-        return render(request, 'todo/delete.html', context={'todo_action': todo_action})
+class DeleteTodoView(DeleteView):
+    model = TO_DO_List
+    context_object_name = 'todo_action'
+    template_name = 'todo/delete.html'
+    # success_url = reverse_lazy('projects')
 
-    def post(self, request, *args, **kwargs):
-        pk = self.kwargs.get('pk')
-        todo_action = get_object_or_404(TO_DO_List, pk=pk)
-        todo_action.delete()
-        return redirect('index_view')
+    def get_success_url(self):
+        return reverse('watch_project', kwargs={'pk': self.object.project.pk})
 
 
 class CreateTodoView(CreateView):
@@ -99,29 +96,6 @@ class UpdateTodoView(UpdateView):
     template_name = 'todo/update_to_do_action.html'
     form_class = ToDoForm
     model = TO_DO_List
-
-    # def get_form_kwargs(self):
-    #     kwargs = super().get_form_kwargs()
-    #     kwargs.pop('initial')
-    #     kwargs['instance'] = self.todo_action
-    #     return kwargs
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['todo_action'] = self.todo_action
-    #     return context
-    #
-    # def form_valid(self, form):
-    #     self.todo_action = form.save()
-    #     return super().form_valid(form)
-    #
-    # def dispatch(self, request, *args, **kwargs):
-    #     self.todo_action = self.get_object()
-    #     return super().dispatch(request, *args, **kwargs)
-    #
-    # def get_object(self):
-    #     pk = self.kwargs.get('pk')
-    #     return get_object_or_404(TO_DO_List, pk=pk)
 
     def get_success_url(self):
         return reverse('watch_todo', kwargs={'pk': self.object.pk})
