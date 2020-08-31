@@ -17,7 +17,7 @@ Projects List
         <p>Title:<a href="{% url 'watch_project' project.pk %}">{{ project.title }}</a></p>
         <p>Date of begining: {{ project.begin_date }}</p>
         <p>Expiration date: {{ project.end_date }}</p>
-        {% if auth.user.is_authenticated %}
+        {% if request.user.is_authenticated  %}
             <a href="{% url 'update_project' project.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>
             <a href="{% url 'delete_project' project.pk %}"><button type="button" class="btn btn-danger">Удалить</button></a>
         {% endif %}
