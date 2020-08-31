@@ -2,11 +2,12 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
+from django.views.generic import View, TemplateView, FormView, ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm
-from django.views.generic import View, TemplateView, FormView, ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse, reverse_lazy
 
 
 class SeacrhView(ListView):
@@ -15,7 +16,7 @@ class SeacrhView(ListView):
 
     def get_search_value(self):
         if self.form.is_valid():
-            return self.form.cleaned_data['search']
+                return self.form.cleaned_data['search']
         return None
 
     def get(self, request, *args, **kwargs):
@@ -36,7 +37,7 @@ class SeacrhView(ListView):
             query = self.get_query()
             queryset = queryset.filter(query)
 
-        queryset = queryset.filter(project__is_active = True)
+        queryset = queryset.filter(project__is_active=True)
         return queryset
 
     def get_query(self):
@@ -50,7 +51,7 @@ class IndexView(SeacrhView):
     model = TO_DO_List
     context_object_name = 'to_do_list'
     ordering = ['-created_at']
-    paginate_by = 2
+    paginate_by = 5
     paginate_orphans = 1
 
     def get_query(self):
@@ -58,7 +59,7 @@ class IndexView(SeacrhView):
         return self.query
 
 
-class DeleteTodoView(DeleteView):
+class DeleteTodoView(LoginRequiredMixin, DeleteView):
     model = TO_DO_List
     context_object_name = 'todo_action'
     template_name = 'todo/delete.html'
@@ -68,7 +69,7 @@ class DeleteTodoView(DeleteView):
         return reverse('watch_project', kwargs={'pk': self.object.project.pk})
 
 
-class CreateTodoView(CreateView):
+class CreateTodoView(LoginRequiredMixin, CreateView):
     model = TO_DO_List
     form_class = ToDoForm
     template_name = 'todo/create_todo_action.html'
@@ -96,7 +97,7 @@ class WatchTodoView(TemplateView):
         return context
 
 
-class UpdateTodoView(UpdateView):
+class UpdateTodoView(LoginRequiredMixin,UpdateView):
     template_name = 'todo/update_to_do_action.html'
     form_class = ToDoForm
     model = TO_DO_List

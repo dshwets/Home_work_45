@@ -3,12 +3,12 @@
     TODO Action
 {% endblock %}
 {% block menu %}
-        <li class="nav-item active">
-        <a class="nav-link" href="{% url 'update_todo' to_do_action.pk %}">Update TODO <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-        <a class="nav-link" href="{% url 'delete_todo' to_do_action.pk %}">Delete TODO <span class="sr-only">(current)</span></a>
-        </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'update_todo' to_do_action.pk %}">Update TODO <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'delete_todo' to_do_action.pk %}">Delete TODO <span class="sr-only">(current)</span></a>
+            </li>
         <li class="nav-item active">
         <a class="nav-link" href="{% url 'watch_project' to_do_action.project.pk %}">Go to Project <span class="sr-only">(current)</span></a>
         </li>
@@ -18,7 +18,6 @@
     <p class="mt-5">Summary: {{ to_do_action.summary }}</p>
     <div class="d-flex"><p class="d-inline">Long_description: </p> <pre class="border d-inline-block mb-0 ml-2">{{ to_do_action.description }}</pre>
     </div>
-{#    <p>Description: {{ to_do_action.description }}</p>#}
     <p>Type:{% for issue in to_do_action.issue.all  %}
             {{ issue}}{% if not forloop.last %}|{% endif %}
     {% endfor %}</p>

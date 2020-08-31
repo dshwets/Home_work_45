@@ -2,11 +2,12 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
 
 from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm, ProjectForm
-from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse, reverse_lazy
 
 
 class Project_view(ListView):
@@ -16,9 +17,9 @@ class Project_view(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(queryset)
         queryset = queryset.filter(is_active=True)
         return queryset
+
 
 class Watch_project_view(DetailView):
     template_name = 'project/watch_project.html'
@@ -32,8 +33,7 @@ class Watch_project_view(DetailView):
         return self.render_to_response(context)
 
 
-
-class Create_project_view(CreateView):
+class Create_project_view(LoginRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
     template_name = 'project/create_project.html'
@@ -42,7 +42,7 @@ class Create_project_view(CreateView):
         return reverse('watch_project', kwargs={'pk': self.object.pk})
 
 
-class ProjectToDoCreateView(CreateView):
+class ProjectToDoCreateView(LoginRequiredMixin, CreateView):
     model = TO_DO_List
     template_name = 'todo/create_todo_action.html'
     form_class = ToDoForm
@@ -56,7 +56,7 @@ class ProjectToDoCreateView(CreateView):
         return redirect('watch_project', pk=project.pk)
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectForm
     template_name = 'project/update_project.html'
@@ -65,7 +65,7 @@ class ProjectUpdateView(UpdateView):
         return reverse('watch_project', kwargs={'pk': self.object.pk})
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'project/delete.html'
     success_url = reverse_lazy('projects')

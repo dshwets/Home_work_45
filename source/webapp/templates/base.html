@@ -17,10 +17,21 @@
   </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-        {% block menu %}
+        {% if request.user.is_authenticated %}
 
-        {% endblock %}
-    </ul>
+            {% block menu %}
+
+            {% endblock %}
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logout'  %}">Logout<span class="sr-only">(current)</span></a>
+            </li>
+
+        {% else %}
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login'  %}">Login<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+        </ul>
     {% block search %}
     
     {% endblock %}
