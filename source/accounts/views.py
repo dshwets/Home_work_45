@@ -12,6 +12,12 @@ class RegisterView(CreateView):
     template_name = 'user_create.html'
     form_class = MyUserCreationForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        print(self.request.GET.get('next'))
+        context['next'] = self.request.GET.get('next')
+        return context
+
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
