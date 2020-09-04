@@ -17,7 +17,7 @@ class MyUserCreationForm(UserCreationForm):
         first_name = cleaned_data.get("first_name")
         last_name = cleaned_data.get("last_name")
 
-        if not first_name or not last_name:
+        if not first_name and not last_name:
             raise forms.ValidationError(
                 "You should fill one of the fields First name or Last name",
                 code='Incorrect First_name or Last_name'
