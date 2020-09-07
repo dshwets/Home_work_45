@@ -1,5 +1,7 @@
 from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.core.exceptions import ValidationError
+from django.forms import MultipleChoiceField
 
 from .models import Statuses, Issues, TO_DO_List, Project
 
@@ -33,4 +35,6 @@ class SeacrhForm(forms.Form):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['begin_date', 'end_date', 'title', 'description']
+        fields = ['begin_date', 'end_date', 'title', 'description', 'team']
+        # widgets = {'team': forms.MultipleChoiceField}
+        widgets = {'team': forms.CheckboxSelectMultiple}

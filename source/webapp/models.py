@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxLengthValidator, MinLengthValidator, BaseValidator
 from django.db import models
@@ -65,6 +66,7 @@ class Project(models.Model):
     description = models.TextField(max_length=3000, null=False, blank=False,verbose_name='Описание проекта',
                                    validators=[MinLengthValidator(10), ])
     is_active = models.BooleanField(default=True)
+    team = models.ManyToManyField(get_user_model(), related_name='projects', verbose_name='Команда')
 
     def __str__(self):
         return self.title

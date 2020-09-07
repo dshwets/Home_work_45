@@ -31,7 +31,8 @@
                 {% url 'accounts:create' as compare_url %}
                 {% url 'accounts:login' as compare_url_1 %}
                 {% if compare_url in request.get_full_path or compare_url_1 in request.get_full_path %}
-                    <a class="nav-link" href="{% url 'accounts:login' %}?next={{next}}">Sign In<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'accounts:login' %}?next={{next}}">Sign In<span class="sr-only">
+                        (current)</span></a>
                 {% else %}
                     <a class="nav-link" href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Sign In
                         <span class="sr-only">(current)</span></a>
@@ -40,7 +41,8 @@
             <li class="nav-item active">
 
                 {% if compare_url in request.get_full_path or compare_url_1 in request.get_full_path %}
-                    <a class="nav-link" href="{% url 'accounts:create' %}?next={{next}}">Sign Up<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'accounts:create' %}?next={{next}}">Sign Up<span class="sr-only">
+                        (current)</span></a>
                 {% else %}
                     <a class="nav-link" href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up
                         <span class="sr-only">(current)</span></a>
