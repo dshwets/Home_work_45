@@ -318,32 +318,6 @@
 },
 {
   "model": "webapp.to_do_list",
-  "pk": 27,
-  "fields": {
-    "summary": "asdasdasdasdasdasdasda",
-    "description": "asdasdadadadadasasdas",
-    "status": 2,
-    "project": 2,
-    "created_at": "2020-08-24T13:04:47.133Z",
-    "updated_at": "2020-08-24T13:04:47.133Z",
-    "issue": []
-  }
-},
-{
-  "model": "webapp.to_do_list",
-  "pk": 28,
-  "fields": {
-    "summary": "asdasdasdakgndfjgdfnkgjdngjdnj",
-    "description": "akaslkdasldkasjdjlak",
-    "status": 2,
-    "project": 2,
-    "created_at": "2020-08-24T13:07:33.317Z",
-    "updated_at": "2020-08-24T13:07:33.317Z",
-    "issue": []
-  }
-},
-{
-  "model": "webapp.to_do_list",
   "pk": 29,
   "fields": {
     "summary": "kkasjdkasjdladjalkdkjas",
@@ -551,7 +525,8 @@
     "end_date": null,
     "title": "\u0412\u0435\u0441\u044c \u0448\u043b\u0430\u043a, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043d\u0435 \u043f\u043e\u043d\u044f\u0442\u043d\u043e \u043a \u0447\u0435\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f",
     "description": "\u0422\u0443\u0442 \u043d\u0435\u0442 \u043d\u0438\u0447\u0435\u0433\u043e \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u043e\u0433\u043e",
-    "is_active": false
+    "is_active": false,
+    "team": []
   }
 },
 {
@@ -562,25 +537,12 @@
     "end_date": "2020-08-31",
     "title": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0443\u043f\u0435\u0440\u043d\u043e\u0432\u044b\u0439 \u043f\u0440\u043e\u0435\u043a\u0442",
     "description": "\u0422\u0443\u0442 \u0431\u0443\u0434\u0435\u0442 \u043e\u0447\u0435\u043d\u044c \u043a\u0440\u0443\u0442\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435.",
-    "is_active": true
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$150000$X8geaQmv7zcz$gwcAakr46r7XK9u2OnzlEpj2CSlaniv3DrNfD25JNJc=",
-    "last_login": "2020-08-24T14:28:26.143Z",
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
     "is_active": true,
-    "date_joined": "2020-08-04T18:08:09.181Z",
-    "groups": [],
-    "user_permissions": []
+    "team": [
+      6,
+      7,
+      8
+    ]
   }
 }
 ]
