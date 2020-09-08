@@ -2,12 +2,12 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 
 from webapp.models import TO_DO_List, Project
-from webapp.forms import ToDoForm, SeacrhForm, ProjectForm
+from webapp.forms import ToDoForm, SeacrhForm, ProjectForm, ManageTeamForm
 
 
 class Project_view(ListView):
@@ -33,19 +33,21 @@ class Watch_project_view(DetailView):
         return self.render_to_response(context)
 
 
-class Create_project_view(LoginRequiredMixin, CreateView):
+class Create_project_view(PermissionRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
     template_name = 'project/create_project.html'
+    permission_required = 'webapp.add_project'
 
     def get_success_url(self):
         return reverse('watch_project', kwargs={'pk': self.object.pk})
 
 
-class ProjectToDoCreateView(LoginRequiredMixin, CreateView):
+class ProjectToDoCreateView(PermissionRequiredMixin, CreateView):
     model = TO_DO_List
-    template_name = 'todo/create_todo_action.html'
     form_class = ToDoForm
+    template_name = 'todo/create_todo_action.html'
+    permission_required = 'webapp.add_to_do_list'
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
@@ -55,20 +57,35 @@ class ProjectToDoCreateView(LoginRequiredMixin, CreateView):
         form.save_m2m()
         return redirect('watch_project', pk=project.pk)
 
+    def has_permission(self):
+        return super().has_permission() and (self.request.user in get_object_or_404(Project, pk=self.kwargs.get('pk')).team.all())
 
-class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+
+class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectForm
     template_name = 'project/update_project.html'
+    permission_required = 'webapp.change_project'
 
     def get_success_url(self):
         return reverse('watch_project', kwargs={'pk': self.object.pk})
 
 
-class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+class ManageTeamView(PermissionRequiredMixin, UpdateView):
+    model = Project
+    form_class = ManageTeamForm
+    template_name = 'project/manage_team.html'
+    permission_required = ('auth.add_user', 'auth.delete_user')
+
+    def get_success_url(self):
+        return reverse('watch_project', kwargs={'pk': self.object.pk})
+
+
+class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     model = Project
     template_name = 'project/delete.html'
     success_url = reverse_lazy('projects')
+    permission_required = 'webapp.delete_project'
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()

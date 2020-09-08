@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
 from django.views.generic import View, TemplateView, FormView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from webapp.models import TO_DO_List, Project
 from webapp.forms import ToDoForm, SeacrhForm
@@ -59,20 +59,24 @@ class IndexView(SeacrhView):
         return self.query
 
 
-class DeleteTodoView(LoginRequiredMixin, DeleteView):
+class DeleteTodoView(PermissionRequiredMixin, DeleteView):
     model = TO_DO_List
     context_object_name = 'todo_action'
     template_name = 'todo/delete.html'
-    # success_url = reverse_lazy('projects')
+    permission_required = 'webapp.delete_to_do_list'
 
     def get_success_url(self):
         return reverse('watch_project', kwargs={'pk': self.object.project.pk})
 
+    def has_permission(self):
+        return super().has_permission() and (self.request.user in self.get_object().project.team.all())
 
-class CreateTodoView(LoginRequiredMixin, CreateView):
+
+class CreateTodoView(PermissionRequiredMixin, CreateView):
     model = TO_DO_List
     form_class = ToDoForm
     template_name = 'todo/create_todo_action.html'
+    permission_required = 'webapp.add_to_do_list'
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
@@ -81,9 +85,6 @@ class CreateTodoView(LoginRequiredMixin, CreateView):
         to_do_action.save()
         form.save_m2m()
         return redirect('watch_project', pk=project.pk)
-
-    # def get_success_url(self):
-    #     return reverse('watch_todo', kwargs={'pk': self.object.pk})
 
 
 class WatchTodoView(TemplateView):
@@ -97,10 +98,14 @@ class WatchTodoView(TemplateView):
         return context
 
 
-class UpdateTodoView(LoginRequiredMixin,UpdateView):
+class UpdateTodoView(PermissionRequiredMixin, UpdateView):
     template_name = 'todo/update_to_do_action.html'
     form_class = ToDoForm
     model = TO_DO_List
+    permission_required = 'webapp.change_to_do_list'
 
     def get_success_url(self):
         return reverse('watch_todo', kwargs={'pk': self.object.pk})
+
+    def has_permission(self):
+        return super().has_permission() and (self.request.user in self.get_object().project.team.all())

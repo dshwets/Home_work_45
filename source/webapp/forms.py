@@ -38,3 +38,11 @@ class ProjectForm(forms.ModelForm):
         fields = ['begin_date', 'end_date', 'title', 'description', 'team']
         # widgets = {'team': forms.MultipleChoiceField}
         widgets = {'team': forms.CheckboxSelectMultiple}
+
+
+class ManageTeamForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['team']
+        # widgets = {'team': forms.MultipleChoiceField}
+        widgets = {'team': forms.CheckboxSelectMultiple}

@@ -4,7 +4,10 @@
 {% endblock %}
 {% block menu %}
         <li class="nav-item active">
-        <a class="nav-link" href="{% url 'project_todo_add' project.pk %}">Add TODO in project <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'project_todo_add' project.pk %}">Add TODO in project <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'manage_team' project.pk %}">Manage Team<span class="sr-only">(current)</span></a>
         </li>
 {% endblock %}
 {% block content %}
