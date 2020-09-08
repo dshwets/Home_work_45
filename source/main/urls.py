@@ -20,7 +20,7 @@ from webapp.views import IndexView,CreateTodoView, DeleteTodoView, WatchTodoView
 from django.contrib.auth.views import LogoutView, LoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index_view'),
+    path('', Project_view.as_view(), name='index_view'),
     path('add/', CreateTodoView.as_view(), name='add'),
     path('todo/<int:pk>/', WatchTodoView.as_view(), name='watch_todo'),
     path('todo/<int:pk>/delete/', DeleteTodoView.as_view(), name='delete_todo'),

@@ -3,12 +3,16 @@
     Project
 {% endblock %}
 {% block menu %}
+    {% if perms.webapp.add_to_do_list and request.user in object.team.all %}
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'project_todo_add' project.pk %}">Add TODO in project <span class="sr-only">(current)</span></a>
         </li>
+    {% endif %}
+    {% if perms.auth.add_user and perms.auth.delete_user and request.user in object.team.all %}
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'manage_team' project.pk %}">Manage Team<span class="sr-only">(current)</span></a>
         </li>
+    {% endif %}
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -31,10 +35,12 @@
         <p>Status: {{ to_do_action.status }}</p>
         <p>Created at: {{ to_do_action.created_at }}</p>
 
-        {% if request.user.is_authenticated  %}
+        {% if perms.webapp.delete_to_do_list and request.user in object.team.all %}
            <form class="d-inline" action="{% url 'delete_todo' to_do_action.pk %}" method="get">
             <button type="submit" class="btn btn-secondary">Удалить</button>
             </form>
+        {% endif %}
+        {% if perms.webapp.change_to_do_list and request.user in object.team.all %}
             <a href="{% url 'update_todo' to_do_action.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>
         {% endif %}
         <br><br>

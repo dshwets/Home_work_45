@@ -3,15 +3,19 @@
     TODO Action
 {% endblock %}
 {% block menu %}
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'update_todo' to_do_action.pk %}">Update TODO <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'delete_todo' to_do_action.pk %}">Delete TODO <span class="sr-only">(current)</span></a>
-            </li>
+    {% if perms.webapp.change_to_do_list and request.user in to_do_action.project.team.all %}
         <li class="nav-item active">
-        <a class="nav-link" href="{% url 'watch_project' to_do_action.project.pk %}">Go to Project <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'update_todo' to_do_action.pk %}">Update TODO <span class="sr-only">(current)</span></a>
         </li>
+    {% endif %}
+    {% if perms.webapp.delete_to_do_list and request.user in to_do_action.project.team.all %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'delete_todo' to_do_action.pk %}">Delete TODO <span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
+    <li class="nav-item active">
+    <a class="nav-link" href="{% url 'watch_project' to_do_action.project.pk %}">Go to Project <span
+            class="sr-only">(current)</span></a></li>
 {% endblock %}
 {% block content %}
 <div class="container">
