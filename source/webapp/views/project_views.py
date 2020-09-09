@@ -80,6 +80,9 @@ class ManageTeamView(PermissionRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('watch_project', kwargs={'pk': self.object.pk})
 
+    def has_permission(self):
+        return super().has_permission() and (self.request.user in self.get_object().team.all())
+
 
 class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     model = Project
