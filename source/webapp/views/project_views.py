@@ -75,7 +75,7 @@ class ManageTeamView(PermissionRequiredMixin, UpdateView):
     model = Project
     form_class = ManageTeamForm
     template_name = 'project/manage_team.html'
-    permission_required = ('auth.add_user', 'auth.delete_user')
+    permission_required = 'webapp.can_change_team'
 
     def get_success_url(self):
         return reverse('watch_project', kwargs={'pk': self.object.pk})

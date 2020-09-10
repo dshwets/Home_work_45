@@ -70,3 +70,8 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        permissions = {
+            ('can_change_team', 'может редактировать команду преокта')
+        }
