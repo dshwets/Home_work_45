@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 from webapp.views import IndexView,CreateTodoView, DeleteTodoView, WatchTodoView, UpdateTodoView, Project_view, \
     Watch_project_view, Create_project_view,ProjectToDoCreateView, ProjectUpdateView, ProjectDeleteView, ManageTeamView
 from django.contrib.auth.views import LogoutView, LoginView
@@ -37,4 +40,4 @@ urlpatterns = [
 
     path('accounts/', include('accounts.urls')),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
