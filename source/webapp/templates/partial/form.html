@@ -1,7 +1,7 @@
 <form action="{{ action_url }}" method="{{ form_method }}">
 {% csrf_token %}
     <div class="container">
-    <h1>{{ action }} ToDo action</h1>
+    <h1>{{ action }}</h1>
     {% for error in form.non_field_errors  %}
         <p class="text-danger">{{ error }}</p>
     {% endfor %}

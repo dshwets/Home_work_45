@@ -24,7 +24,7 @@
     {% if object.team %}
         <h4>Команда:</h4>
         {% for member in object.team.all %}
-            <p> >>>> {{ member.username }}</p>
+            <p> >>>> <a href="{% url 'accounts:detail' member.pk %}">{{ member.username }}</a></p>
         {% endfor %}
 
     {% endif %}

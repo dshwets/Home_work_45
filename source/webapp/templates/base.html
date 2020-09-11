@@ -22,9 +22,11 @@
             {% block menu %}
 
             {% endblock %}
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'accounts:logout'  %}">Logout, {{ request.user }}<span class="sr-only">(current)</span></a>
+            <li class="nav-item active mt-2">
+            <a class="nav-link d-inline p-0 ml-2" href="{% url 'accounts:logout'  %}">Logout,<span class="sr-only">(current)</span></a>
+            <a class="nav-link d-inline p-0" href="{% url 'accounts:detail' user.pk  %}">{{ user.username }}<span class="sr-only">(current)</span></a>
             </li>
+
 
         {% else %}
             <li class="nav-item active">
