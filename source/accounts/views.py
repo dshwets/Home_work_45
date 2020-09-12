@@ -1,10 +1,11 @@
+from django.contrib import auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from accounts.forms import MyUserCreationForm
 from accounts.models import Profile
@@ -44,3 +45,10 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         kwargs['projects'] = kwargs['object'].projects.all()
         return super().get_context_data(**kwargs)
+
+
+class WatchUsersView(PermissionRequiredMixin, ListView):
+    template_name = 'users_list.html'
+    model = Profile
+    context_object_name = 'profiles'
+    permission_required = 'accounts.can_watch_users'
