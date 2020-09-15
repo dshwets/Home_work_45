@@ -3,6 +3,11 @@
     {{ user_obj.get_full_name }}
 {% endblock %}
 {% block menu %}
+    {% if request.user == user_obj  %}
+        <li class="nav-item active">
+            <a class="nav-link " href="{% url 'accounts:change' user_obj.pk  %}">Edit User<span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
 {% endblock %}
 {% block content %}
 <div class="container">
