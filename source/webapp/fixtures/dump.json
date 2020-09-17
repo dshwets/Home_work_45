@@ -546,5 +546,45 @@
       8
     ]
   }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "avatar": "user_pics/119012930-owl-drawn-in-style-antistress-freehand-sketch-drawing-vector-illustration-.jpg",
+    "about": "\u0412\u0441\u044f\u043a\u0438\u0439 \u0440\u0430\u0437\u043d\u044b\u0439 \u0441\u043c\u0435\u0448\u043d\u043e\u0439 \u0442\u0435\u043a\u0441\u0442.",
+    "github_account": "https://github.com/dshwets/"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 6,
+    "avatar": "",
+    "about": "",
+    "github_account": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": 7,
+    "avatar": "",
+    "about": null,
+    "github_account": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": 8,
+    "avatar": "",
+    "about": null,
+    "github_account": null
+  }
 }
 ]
